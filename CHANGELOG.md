@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 (2026-10-29)
+
+- Node icon is the official CoworkingView monogram (light and dark), replacing a generic building.
+
 ## 0.1.1 (2026-10-29)
 
 - Meets n8n's community node lint: default limit 50, sorted search options, errors always wrapped in NodeApiError or NodeOperationError, author email.

@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-coworkingview",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "n8n community node for the CoworkingView API: search coworking spaces and private offices, get one space, read market rates and list cities. No API key.",
     "keywords": [
         "n8n-community-node-package",
