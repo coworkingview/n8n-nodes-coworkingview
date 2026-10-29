@@ -132,7 +132,7 @@ export class CoworkingView implements INodeType {
 				name: 'limit',
 				type: 'number',
 				typeOptions: { minValue: 1, maxValue: 50 },
-				default: 10,
+				default: 50,
 				description: 'Max number of results to return',
 				displayOptions: { show: { resource: ['space'], operation: ['search'] } },
 			},
@@ -144,12 +144,12 @@ export class CoworkingView implements INodeType {
 				default: {},
 				displayOptions: { show: { resource: ['space'], operation: ['search'] } },
 				options: [
-					{ displayName: 'Page', name: 'page', type: 'number', typeOptions: { minValue: 1, maxValue: 500 }, default: 1 },
-					{ displayName: 'District', name: 'zone', type: 'string', default: '', placeholder: 'mitte' },
-					{ displayName: 'Operator', name: 'operator', type: 'string', default: '', placeholder: 'wework' },
-					{ displayName: 'Min Capacity', name: 'minCapacity', type: 'number', typeOptions: { minValue: 1 }, default: 1 },
-					{ displayName: 'Max Price', name: 'maxPrice', type: 'number', typeOptions: { minValue: 0 }, default: 0 },
 					{ displayName: 'Currency', name: 'currency', type: 'string', default: '', placeholder: 'EUR', description: 'ISO 4217 code for Max Price' },
+					{ displayName: 'District', name: 'zone', type: 'string', default: '', placeholder: 'mitte' },
+					{ displayName: 'Max Price', name: 'maxPrice', type: 'number', typeOptions: { minValue: 0 }, default: 0 },
+					{ displayName: 'Min Capacity', name: 'minCapacity', type: 'number', typeOptions: { minValue: 1 }, default: 1 },
+					{ displayName: 'Operator', name: 'operator', type: 'string', default: '', placeholder: 'wework' },
+					{ displayName: 'Page', name: 'page', type: 'number', typeOptions: { minValue: 1, maxValue: 500 }, default: 1 },
 				],
 			},
 			{
@@ -196,7 +196,10 @@ export class CoworkingView implements INodeType {
 					out.push({ json: { error: (error as Error).message }, pairedItem: { item: i } });
 					continue;
 				}
-				if (error instanceof NodeOperationError) throw error;
+				// Bad input was already described by buildRequest; anything else came from the API.
+				if (error instanceof NodeOperationError) {
+					throw new NodeOperationError(this.getNode(), error.message, { itemIndex: i });
+				}
 				throw new NodeApiError(this.getNode(), error as JsonObject, { itemIndex: i });
 			}
 		}

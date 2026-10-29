@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-coworkingview",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "n8n community node for the CoworkingView API: search coworking spaces and private offices, get one space, read market rates and list cities. No API key.",
     "keywords": [
         "n8n-community-node-package",
@@ -15,6 +15,7 @@
     "homepage": "https://coworkingview.com/en/mcp",
     "author": {
         "name": "CoworkingView",
+        "email": "coworkingview@gmail.com",
         "url": "https://coworkingview.com"
     },
     "repository": {
@@ -31,9 +32,12 @@
         "CHANGELOG.md"
     ],
     "scripts": {
-        "build": "rm -rf dist && tsc && cp nodes/CoworkingView/*.svg nodes/CoworkingView/*.json dist/nodes/CoworkingView/",
-        "test": "npm run build && node --test test/*.test.js",
-        "prepublishOnly": "npm test"
+        "build": "n8n-node build",
+        "lint": "n8n-node lint",
+        "lint:fix": "n8n-node lint --fix",
+        "test": "n8n-node build && node --test test/*.test.js",
+        "release": "n8n-node release",
+        "prepublishOnly": "n8n-node prerelease"
     },
     "n8n": {
         "n8nNodesApiVersion": 1,
@@ -44,7 +48,11 @@
         ]
     },
     "devDependencies": {
+        "@n8n/node-cli": "^0.54.5",
+        "eslint": "^9.39.4",
         "n8n-workflow": "2.16.0",
+        "prettier": "^3.8.3",
+        "release-it": "^20.2.0",
         "typescript": "5.9.3"
     },
     "peerDependencies": {
