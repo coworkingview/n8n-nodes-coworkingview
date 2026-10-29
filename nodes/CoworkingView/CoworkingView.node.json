@@ -1,0 +1,9 @@
+{
+    "node": "n8n-nodes-coworkingview.coworkingView",
+    "nodeVersion": "1.0",
+    "codexVersion": "1.0",
+    "categories": ["Data & Storage", "Miscellaneous"],
+    "resources": {
+        "primaryDocumentation": [{ "url": "https://github.com/coworkingview/n8n-nodes-coworkingview#readme" }]
+    }
+}

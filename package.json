@@ -1,0 +1,56 @@
+{
+    "name": "n8n-nodes-coworkingview",
+    "version": "0.1.0",
+    "description": "n8n community node for the CoworkingView API: search coworking spaces and private offices, get one space, read market rates and list cities. No API key.",
+    "keywords": [
+        "n8n-community-node-package",
+        "n8n",
+        "coworkingview",
+        "coworking",
+        "office",
+        "flexible-office",
+        "real-estate"
+    ],
+    "license": "MIT",
+    "homepage": "https://coworkingview.com/en/mcp",
+    "author": {
+        "name": "CoworkingView",
+        "url": "https://coworkingview.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/coworkingview/n8n-nodes-coworkingview.git"
+    },
+    "bugs": {
+        "url": "https://github.com/coworkingview/n8n-nodes-coworkingview/issues"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE",
+        "CHANGELOG.md"
+    ],
+    "scripts": {
+        "build": "rm -rf dist && tsc && cp nodes/CoworkingView/*.svg nodes/CoworkingView/*.json dist/nodes/CoworkingView/",
+        "test": "npm run build && node --test test/*.test.js",
+        "prepublishOnly": "npm test"
+    },
+    "n8n": {
+        "n8nNodesApiVersion": 1,
+        "strict": true,
+        "credentials": [],
+        "nodes": [
+            "dist/nodes/CoworkingView/CoworkingView.node.js"
+        ]
+    },
+    "devDependencies": {
+        "n8n-workflow": "2.16.0",
+        "typescript": "5.9.3"
+    },
+    "peerDependencies": {
+        "n8n-workflow": "*"
+    },
+    "engines": {
+        "node": ">=20"
+    }
+}
